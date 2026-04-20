@@ -1,12 +1,12 @@
 <?php
-// Database configuration
-$host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'cinema';
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "cinema";
 
-// Create connection
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($host, $user, $pass, $db);
 
-// Set charset to utf8mb4
-$conn->set_charset("utf8mb4");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
