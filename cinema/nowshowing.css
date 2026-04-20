@@ -1,0 +1,260 @@
+/* =========================
+   NOW SHOWING (FULLSCREEN)
+========================= */
+
+.now-showing {
+    width: 100vw;
+    height: calc(100vh - 80px);
+    position: relative;
+    overflow: hidden;
+    background: #000;
+}
+
+/* =========================
+   CAROUSEL CONTAINER
+========================= */
+
+.carousel-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* =========================
+   SLIDES (FIXED CAROUSEL)
+========================= */
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none; /* hide all by default */
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+/* first slide visible on load */
+.slide:first-child {
+    display: block;
+}
+
+/* smooth fade (optional but nice) */
+.slide {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.slide[style*="display: block"] {
+    opacity: 1;
+}
+
+/* =========================
+   OVERLAY (GRADIENT TEXT)
+========================= */
+
+.slide-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 70px 50px 40px;
+    color: white;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.9) 0%,
+        rgba(0,0,0,0.6) 40%,
+        rgba(0,0,0,0) 100%
+    );
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.slide:hover .slide-overlay {
+    opacity: 1;
+}
+
+/* =========================
+   TEXT
+========================= */
+
+.slide-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.slide-description {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+/* =========================
+   PRICE (FIXED ₱)
+========================= */
+
+.movie-price {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffd700;
+}
+
+/* =========================
+   NAV BUTTONS
+========================= */
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    width: 50px;
+    height: 50px;
+
+    background: rgba(128, 0, 32, 0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+
+    font-size: 20px;
+    cursor: pointer;
+
+    transition: 0.3s;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+}
+
+.carousel-btn:hover {
+    background: rgba(178, 34, 34, 0.9);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+
+/* =========================
+   DOTS
+========================= */
+
+.carousel-dots {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    border: 2px solid rgba(255,255,255,0.3);
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dot:hover {
+    background: white;
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: #dc143c;
+    border-color: #dc143c;
+    transform: scale(1.3);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .now-showing {
+        height: calc(100vh - 120px);
+    }
+
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .slide-overlay {
+        padding: 40px 20px;
+    }
+
+    .slide-title {
+        font-size: 1.8rem;
+    }
+
+    .slide-description {
+        font-size: 1rem;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .now-showing {
+        height: calc(100vh - 140px);
+    }
+
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+
+    .slide-title {
+        font-size: 1.4rem;
+    }
+
+    .slide-description {
+        font-size: 0.9rem;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* =========================
+   MOBILE TOUCH FIX
+========================= */
+
+@media (hover: none) {
+    .slide-overlay {
+        opacity: 1;
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,0.7),
+            rgba(0,0,0,0)
+        );
+    }
+
+    .carousel-image:hover {
+        transform: none;
+        filter: none;
+    }
+}
